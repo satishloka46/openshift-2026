@@ -1,3 +1,17 @@
+🛠️ Phase 0: Organization Policy Adjustment
+Before beginning the installation, you must ensure that your GCP project allows the creation of Service Account keys. Many organizations have a default policy that restricts this.
+
+Disable the Key Creation Restriction:
+# Set your project ID
+export GCP_PROJECT_ID=<ENTER_YOUR_PROJECT_ID_HERE>
+
+# Disable the enforcement of the "Disable Service Account Key Creation" policy
+gcloud resource-manager org-policies disable-enforce iam.disableServiceAccountKeyCreation --project=$GCP_PROJECT_ID
+
+2: Wait for Propagation:
+⏳ Important: Please wait 3–5 minutes after running the command above. GCP organization policies take a few moments to propagate across the infrastructure. Moving too fast may cause the Service Account key generation in Phase 3 to fail.
+
+
 # This is the complete, step-by-step technical guide to deploy a **Red Hat OpenShift Container Platform** cluster on **Google Cloud Platform (GCP)** using the **Installer Provisioned Infrastructure (IPI)** method.
 
 -----
